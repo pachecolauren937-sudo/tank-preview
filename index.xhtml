@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1014" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="钢铁破坏者" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+    <title>钢铁破坏者</title>
+    <style>
+      /* 加载页（T108）：先于游戏包画出来、盖住整个界面，游戏建好、开始界面画过一帧才撤 */
+      #boot { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 2147483000; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #10181b; color: #ecede1; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; transition: opacity 0.3s; user-select: none; -webkit-user-select: none; }
+      #boot::before, #boot::after { content: ""; position: absolute; top: 28px; bottom: 28px; width: 1px; background: #33444755; }
+      #boot::before { left: 12px; }
+      #boot::after { right: 12px; }
+      #boot.boot-done { opacity: 0; pointer-events: none; }
+      .boot-title { font-size: 30px; font-weight: 900; letter-spacing: 5px; text-indent: 5px; text-shadow: 3px 2px 0 #000; }
+      .boot-rule { width: 132px; height: 2px; margin: 12px 0 30px; background: linear-gradient(90deg, transparent, #b8913a, transparent); }
+      .boot-tank { width: min(80vw, 330px); height: auto; overflow: visible; }
+      .boot-tread { animation: boot-tread 0.6s linear infinite; }
+      .boot-ground { animation: boot-ground 0.5s linear infinite; }
+      .boot-wheel { transform-box: fill-box; transform-origin: center; animation: boot-spin 0.9s linear infinite; }
+      .boot-status { display: flex; align-items: center; gap: 8px; width: min(74vw, 290px); margin-top: 36px; font-size: 14px; font-weight: 700; color: #c4b79b; }
+      .boot-gear { width: 17px; height: 17px; flex: none; animation: boot-spin 2.4s linear infinite; }
+      .boot-label { flex: 1; white-space: nowrap; }
+      .boot-pct { font-variant-numeric: tabular-nums; color: #e1c695; }
+      .boot-bar { position: relative; width: min(74vw, 290px); height: 6px; margin-top: 9px; overflow: hidden; background: #1b2427; border: 1px solid #33444a; }
+      .boot-fill { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(90deg, #b99862, #e1c695); transform-origin: left; transform: scaleX(0); transition: transform 0.25s ease-out; }
+      .boot-tip { height: 16px; margin-top: 14px; font-size: 12px; color: #829594; }
+      .boot-tip.boot-slow, #boot.boot-fail .boot-label { color: #e0b458; }
+      @keyframes boot-spin { to { transform: rotate(360deg); } }
+      @keyframes boot-tread { to { stroke-dashoffset: -18; } }
+      @keyframes boot-ground { to { stroke-dashoffset: 24; } }
+      @media (prefers-reduced-motion: reduce) { .boot-tread, .boot-ground, .boot-wheel, .boot-gear { animation: none; } }
+    </style>
+    <script type="module" crossorigin="crossorigin" src="./assets/index-BxiVelm_.js"></script>
+    <link rel="stylesheet" crossorigin="crossorigin" href="./assets/index-Da6xLZ0n.css" />
+  </head>
+  <body>
+    <div id="boot" role="progressbar" aria-label="加载中" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="boot-title">钢铁破坏者</div>
+      <div class="boot-rule"></div>
+      <svg class="boot-tank" viewBox="0 0 320 120" aria-hidden="true">
+        <defs>
+          <linearGradient id="boot-steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#66756f" /><stop offset="1" stop-color="#2f3b3a" /></linearGradient>
+          <linearGradient id="boot-turret" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#76847d" /><stop offset="1" stop-color="#3a4745" /></linearGradient>
+        </defs>
+        <line class="boot-ground" x1="0" y1="114" x2="320" y2="114" stroke="#33444a" stroke-width="2" stroke-dasharray="14 10" />
+        <line x1="104" y1="40" x2="86" y2="6" stroke="#5c6a66" stroke-width="1.5" />
+        <rect x="34" y="78" width="228" height="33" rx="16.5" fill="#161b1d" stroke="#2c3639" stroke-width="1.5" />
+        <rect class="boot-tread" x="37.5" y="81.5" width="221" height="26" rx="13" fill="none" stroke="#4a5558" stroke-width="3" stroke-dasharray="5 4" />
+        <g fill="#283033" stroke="#4b585b" stroke-width="1.5">
+          <g class="boot-wheel"><circle cx="50" cy="95" r="10" /><path d="M50 86v18M41 95h18" stroke="#3a4547" /></g>
+          <g class="boot-wheel"><circle cx="82" cy="95" r="11" /><path d="M82 85v20M72 95h20" stroke="#3a4547" /></g>
+          <g class="boot-wheel"><circle cx="114" cy="95" r="11" /><path d="M114 85v20M104 95h20" stroke="#3a4547" /></g>
+          <g class="boot-wheel"><circle cx="146" cy="95" r="11" /><path d="M146 85v20M136 95h20" stroke="#3a4547" /></g>
+          <g class="boot-wheel"><circle cx="178" cy="95" r="11" /><path d="M178 85v20M168 95h20" stroke="#3a4547" /></g>
+          <g class="boot-wheel"><circle cx="210" cy="95" r="11" /><path d="M210 85v20M200 95h20" stroke="#3a4547" /></g>
+          <g class="boot-wheel"><circle cx="244" cy="95" r="10" /><path d="M244 86v18M235 95h18" stroke="#3a4547" /></g>
+        </g>
+        <path d="M30 80 L40 62 L232 62 L272 74 L266 80 Z" fill="url(#boot-steel)" stroke="#1c2426" stroke-width="1.5" />
+        <path d="M40 62 L232 62 L272 74" fill="none" stroke="#9aa497" stroke-width="1" opacity="0.7" />
+        <rect x="44" y="70" width="202" height="11" fill="#3a4745" stroke="#1c2426" />
+        <path d="M84 70v11M124 70v11M164 70v11M204 70v11" stroke="#1c2426" />
+        <path d="M92 62 L100 40 L168 38 L196 48 L196 62 Z" fill="url(#boot-turret)" stroke="#1c2426" stroke-width="1.5" />
+        <path d="M100 40 L168 38 L196 48" fill="none" stroke="#b8c0b2" stroke-width="1" opacity="0.6" />
+        <rect x="116" y="32" width="28" height="7" rx="2" fill="#4c5a56" stroke="#1c2426" />
+        <rect x="194" y="45" width="12" height="13" fill="#3e4b48" stroke="#1c2426" />
+        <rect x="206" y="49" width="88" height="6" fill="#4a5753" stroke="#1c2426" />
+        <rect x="292" y="46" width="14" height="12" rx="1" fill="#3e4b48" stroke="#1c2426" />
+        <g fill="#b8913a" opacity="0.8"><circle cx="52" cy="66" r="1.2" /><circle cx="92" cy="66" r="1.2" /><circle cx="132" cy="66" r="1.2" /><circle cx="172" cy="66" r="1.2" /><circle cx="212" cy="66" r="1.2" /></g>
+      </svg>
+      <div class="boot-status">
+        <svg class="boot-gear" viewBox="0 0 24 24" aria-hidden="true"><path fill="#b99862" fill-rule="evenodd" d="M19.5 10.9 L22.5 11.0 L22.5 13.0 L19.5 13.1 L18.1 16.6 L20.1 18.7 L18.7 20.1 L16.6 18.1 L13.1 19.5 L13.0 22.5 L11.0 22.5 L10.9 19.5 L7.4 18.1 L5.3 20.1 L3.9 18.7 L5.9 16.6 L4.5 13.1 L1.5 13.0 L1.5 11.0 L4.5 10.9 L5.9 7.4 L3.9 5.3 L5.3 3.9 L7.4 5.9 L10.9 4.5 L11.0 1.5 L13.0 1.5 L13.1 4.5 L16.6 5.9 L18.7 3.9 L20.1 5.3 L18.1 7.4Z M12 8.6a3.4 3.4 0 1 0 0.01 0Z" /></svg>
+        <span class="boot-label">正在下载</span><b class="boot-pct">0%</b>
+      </div>
+      <div class="boot-bar"><i class="boot-fill"></i></div>
+      <p class="boot-tip"></p>
+    </div>
+    <script>
+      // 加载页（T108）：计时起点、战况文案轮换、卡住 6 秒没进度就提示（进度由游戏包里的 src/boot.ts 推）
+      (function () {
+        var B = (window.__TANK_BOOT__ = { marks: [['html', Math.round(performance.now())]], last: performance.now(), pre: 1 });
+        var el = document.getElementById('boot');
+        var tip = el.querySelector('.boot-tip');
+        var label = el.querySelector('.boot-label');
+        var tips = ['侦察：前方发现装甲集群', '工兵正在排除雷区', '补给车队已抵达前沿', '炮兵阵地完成校射', '无线电静默，等待命令', '主炮弹药装填完毕', '天气晴，适合突击', '前沿观察哨报告敌情'];
+        var i = Math.floor(Math.random() * tips.length);
+        var n = 0;
+        tip.textContent = tips[i];
+        var timer = setInterval(function () {
+          if (!el.isConnected || el.classList.contains('boot-fail')) return clearInterval(timer);
+          var slow = performance.now() - B.last > 6000;
+          tip.classList.toggle('boot-slow', slow);
+          if (slow) tip.textContent = label.textContent === '正在下载' ? '网络较慢，请稍候' : '还在加载，请稍候';
+          else tip.textContent = tips[++n % 3 === 0 ? (i = (i + 1) % tips.length) : i];
+        }, 1000);
+      })();
+    </script>
+    <main id="app">
+      <canvas id="game-canvas" aria-label="钢铁破坏者"></canvas>
+
+      <div id="steer-layer" aria-hidden="true"></div>
+      <div id="damage-flash" aria-hidden="true"></div>
+      <div id="freeze-vig" aria-hidden="true"></div>
+      <div id="ach-toast" aria-live="polite"></div>
+      <div id="ult-flash" aria-hidden="true"></div>
+
+      <section id="hud">
+        <section id="vitals" aria-label="耐久与等级">
+          <div class="lv"><small>等级</small> <b id="lv-text">1</b></div>
+          <div class="vbars">
+            <div class="bar hp"><i id="hp-fill"></i><b id="hp-regen"></b><span id="hp-text">100 / 100</span></div>
+            <div class="bar xp"><i id="xp-fill"></i></div>
+          </div>
+        </section>
+        <div class="stats">
+          <span class="zone" id="zone-text">区域 1</span>
+          <span>推进 <b id="dist-text">0</b>米</span>
+          <span>击毁 <b id="kill-text">0</b></span>
+        </div>
+        <div id="slots"></div>
+        <div id="slot-tip"></div>
+        <div id="elite">
+          <span id="elite-name">精英重坦</span>
+          <div class="bar elite"><i id="elite-fill"></i></div>
+          <div id="elite-crew"></div>
+        </div>
+        <div id="intel" aria-live="polite"></div>
+      </section>
+
+      <section id="report" class="hidden" aria-label="战报">
+        <header><b>战报</b><span id="report-total"></span><button id="report-close" type="button" aria-label="收起战报">收起</button></header>
+        <div id="report-body"></div>
+      </section>
+
+      <div id="banner" aria-live="polite"><h3 id="banner-title"></h3><p id="banner-sub"></p></div>
+      <div id="sky-card" aria-live="polite"></div>
+
+      <div id="hint">拖动走位 · 点一下开炮 · 激光按住</div>
+      <div id="flick-prompt" aria-hidden="true"><b></b><span>点击开炮</span></div>
+
+      <section id="levelup" class="overlay hidden">
+        <button id="route-lvl-btn" type="button" class="outline mini">图鉴</button>
+        <button id="sub-open-btn" type="button" class="outline mini">装配</button>
+        <button id="prep-reset" type="button" class="outline mini hidden">重来</button>
+        <h2 id="levelup-title">战地改装</h2>
+        <p class="sub" id="levelup-sub">选一个部件焊上去</p>
+        <div id="reroll-chip" aria-label="换卡次数"></div>
+        <div id="levelup-build" aria-label="当前构筑"></div>
+        <div id="cards"></div>
+        <button id="prep-exit" type="button" class="outline hidden">退出备战</button>
+      </section>
+
+      <section id="prep-exit-ask" class="overlay hidden" aria-label="退出备战">
+        <h2>退出备战？</h2>
+        <p id="prep-exit-note" class="sub"></p>
+        <div class="go-row"><button id="prep-exit-no" type="button">接着选</button><button id="prep-exit-yes" type="button" class="outline">退出</button></div>
+      </section>
+
+      <section id="revive" class="overlay hidden" aria-label="抢修">
+        <h2>坦克严重受损</h2>
+        <p class="sub" id="revive-sub"></p>
+        <button id="revive-btn" type="button"><svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="56"/><circle class="fg" cx="60" cy="60" r="56"/></svg><span></span></button>
+        <p id="revive-note"></p>
+        <button id="revive-no" type="button" class="link quiet">不了，结算</button>
+      </section>
+
+      <section id="endless" class="overlay hidden" aria-label="关卡已完成">
+        <h2>关卡已完成</h2>
+        <p class="sub">进入无尽战区？</p>
+        <p id="endless-note"></p>
+        <div class="go-row"><button id="endless-yes" type="button">进入无尽</button><button id="endless-no" type="button" class="outline">结算</button></div>
+      </section>
+
+      <section id="ad-view" class="overlay hidden" aria-label="广告播放">
+        <p class="ad-tag">广告播放中（测试）</p>
+        <b id="ad-sec">3</b>
+        <div class="ad-bar"><i id="ad-fill"></i></div>
+        <p class="sub">看完才发放奖励</p>
+        <button id="ad-close" type="button" class="outline">关闭</button>
+      </section>
+
+      <div id="cam-ctl" class="fold" aria-label="视角">
+        <button id="cam-up" type="button" aria-label="视角放平，看得更远"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15h18"/><path d="M7 11l5-5 5 5"/></svg></button>
+        <div id="cam-dots"><i></i><i></i><i></i><i></i><i></i></div>
+        <button id="cam-down" type="button" aria-label="视角更俯视"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18"/><path d="M7 13l5 5 5-5"/></svg></button>
+        <button id="cam-reset" type="button" aria-label="恢复默认视角">复位</button>
+        <button id="cam-zoom" type="button" aria-label="镜头拉远（点一下换一档）"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6"/><path d="M7.5 10.5h6M15 15l5.5 5.5"/></svg><span>拉远</span></button>
+        <button id="cam-key" type="button" aria-label="视角（点开调俯仰 / 拉远）"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></svg><span class="kd"><i></i><i></i><i></i><i></i><i></i></span></button>
+      </div>
+      <button id="aim-btn" type="button" aria-label="切换自动瞄准"></button>
+      <button id="fire-btn" type="button" aria-label="切换自动开火"></button>
+      <button id="ult-btn" type="button" class="hidden" aria-label="切换究极自动释放"></button>
+      <div id="ult-key" class="off" aria-label="究极"><span class="ico"></span><span class="key-caption"><span class="key-state" aria-hidden="true"></span><b></b></span></div>
+      <div id="ult-tip"></div>
+      <div id="ult-mark" aria-hidden="true"></div>
+      <div id="arty-marks" aria-hidden="true"></div>
+      <div id="twin" aria-hidden="true"><div class="twin-hint l"><b></b></div><div class="twin-hint r"><b></b></div><div class="twin-ring"></div><div class="twin-knob"></div></div>
+      <button id="report-btn" type="button" aria-label="战报" title="战报"></button>
+      <button id="shot-btn" type="button" aria-label="分享" title="分享"></button>
+      <button id="pause-btn" type="button" aria-label="暂停"></button>
+      <button id="workshop-btn" type="button" class="hidden" aria-label="武器改装" title="武器改装"></button>
+
+      <section id="title" class="overlay main-screen" aria-label="主菜单">
+        <header class="command-header">
+          <div class="title-art"><p id="title-section" class="eyebrow">主菜单</p><div class="title-heading"><h1>钢铁破坏者</h1><button id="title-fullscreen" type="button" data-fullscreen="data-fullscreen" aria-pressed="false">全屏</button></div></div>
+          <button id="rank-bar" type="button" class="hidden" aria-label="军衔与军票"></button>
+        </header>
+        <div class="command-body">
+          <div class="home-menu main-menu">
+            <nav class="main-actions" aria-label="主菜单">
+              <button id="single-btn" type="button" class="main-primary">单人模式<span>›</span></button>
+              <button id="multiplayer-btn" type="button" class="main-wide">多人游戏</button>
+              <button id="title-set-btn" type="button">设置</button>
+              <button id="load-btn" type="button"><b>加载存档</b><small id="load-state">暂无本局存档</small></button>
+              <button id="ranks-btn" type="button">排行榜</button>
+              <button id="exit-btn" type="button">退出游戏</button>
+            </nav>
+            <p id="main-notice" role="status"></p>
+            <footer class="home-footer"><button id="main-install" type="button" class="link" data-install="data-install">添加桌面</button></footer>
+          </div>
+          <div class="home-menu multiplayer-menu">
+            <div class="single-heading"><button id="multiplayer-back" type="button" class="link">‹ 主菜单</button><h2>多人游戏</h2></div>
+            <nav class="main-actions" aria-label="双人局">
+              <button id="local-coop-btn" type="button" class="main-wide"><b>本地双人</b><small>同一台电脑</small></button>
+              <button id="online-coop-btn" type="button" class="main-wide"><b>联机双人</b><small>输入房间码加入</small></button>
+            </nav>
+          </div>
+          <div class="home-menu single-menu">
+            <div class="single-heading"><button id="main-back" type="button" class="link">‹ 主菜单</button><h2 id="home-heading">单人模式</h2></div>
+            <div class="home-actions">
+              <button id="start-btn" type="button">现在出击</button>
+            </div>
+            <p id="home-notice" role="status"></p>
+            <nav class="home-entries" aria-label="单人整备">
+              <button id="factory-btn" type="button"><i></i><span><b>军工厂</b><small>升级与外观</small></span><em>›</em></button>
+              <button id="rank-btn" type="button"><i></i><span><b>军衔</b><small>晋升与勋章</small></span><em>›</em></button>
+              <button id="archive-btn" type="button"><i></i><span><b>战情室</b><small>资料 · 委托 · 纪录</small></span><em>›</em></button>
+            </nav>
+            <footer class="home-footer"><button id="guide-title-btn" type="button" class="link">操作指南</button><button id="title-install" type="button" class="link" data-install="data-install">添加桌面</button><p id="title-best"></p></footer>
+          </div>
+          <section id="core-select" aria-label="战车展示">
+            <div id="core-pick" role="button" tabindex="0" aria-label="战车展示，拖动环视，双击复位"></div>
+            <nav class="core-nav" aria-label="切换流派">
+              <button id="core-prev" type="button" aria-label="上一个流派">‹</button>
+              <span id="core-count" aria-label="流派序号"></span>
+              <button id="core-next" type="button" aria-label="下一个流派">›</button>
+            </nav>
+          </section>
+          <section class="prepare-config" aria-label="出击准备">
+            <div class="prepare-heading"><button id="prepare-back" type="button" class="link">‹ 返回</button><h2>出击准备</h2></div>
+            <div id="core-info" aria-live="polite" aria-atomic="true"></div>
+            <p class="eyebrow">选择作战模式</p>
+            <div id="mission-tabs" role="group" aria-label="作战模式"></div>
+            <div id="mission-items" aria-label="选择目标"></div>
+            <div id="mission-picks" aria-label="备战次数"></div>
+            <div class="mission-brief"><p class="eyebrow" id="mission-caption">战地简报</p><div id="mission-brief"></div></div>
+            <button id="threat-row" type="button" class="hidden" aria-label="战区威胁"></button>
+            <button id="prepare-guide" type="button" class="link">查看操作指南</button>
+          </section>
+        </div>
+        <footer class="deployment-bar">
+          <div><b id="mission-name">连续作战</b><p id="mission-summary"></p><small id="mission-reward"></small></div>
+          <button id="deploy-btn" type="button">出击</button>
+        </footer>
+      </section>
+
+      <section id="menu-hub" class="overlay hidden" aria-labelledby="hub-title">
+        <div class="hub-shell"><header class="hub-heading"><button id="hub-back" type="button" class="link">‹ 返回</button><div><p class="eyebrow">前线指挥部</p><h2 id="hub-title"></h2></div></header>
+          <p id="hub-sub"></p><div id="hub-items"></div>
+        </div>
+      </section>
+      <section id="action-confirm" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+        <div class="confirm-shell"><p class="eyebrow">确认操作</p><h2 id="confirm-title"></h2><div id="confirm-lines"></div>
+          <div class="confirm-actions"><button id="confirm-cancel" type="button"></button><button id="confirm-accept" type="button" class="outline"></button></div>
+        </div>
+      </section>
+
+      <section id="title-set" class="overlay hidden" aria-label="设置">
+        <h2>设置</h2>
+        <div class="settings" data-scope="title"></div>
+        <button id="title-set-back" type="button" class="outline">返回</button>
+      </section>
+
+      <section id="save-box" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="save-head">
+        <h2 id="save-head"></h2>
+        <div id="save-lines"></div>
+        <textarea id="save-paste" hidden="hidden" rows="4" placeholder="把导出的存档文本粘贴到这里" aria-label="存档文本" spellcheck="false" autocomplete="off"></textarea>
+        <p id="save-warn" role="alert" hidden="hidden"></p>
+        <div id="save-btns"></div>
+      </section>
+
+      <section id="pause" class="overlay hidden">
+        <p class="eyebrow">作战已暂停</p><h2>等待指令</h2>
+        <div class="pause-main">
+          <p id="pause-summary"></p>
+          <button id="resume-btn" type="button">继续作战</button>
+          <div class="pause-row"><button id="sub-pause-btn" type="button" class="outline">武器改装</button><button id="route-pause-btn" type="button" class="outline">资料图鉴</button><button id="guide-pause-btn" type="button" class="outline hidden">操作指南</button></div>
+          <div class="pause-row"><button id="settings-open-btn" type="button" class="outline">设置</button><button id="shot-pause-btn" type="button" class="outline">分享</button></div>
+          <div class="pause-display"><button id="pause-fullscreen" type="button" class="outline" data-fullscreen="data-fullscreen" aria-pressed="false">全屏</button><button id="pause-install" type="button" class="outline" data-install="data-install">添加桌面</button></div>
+          <button id="savequit-btn" type="button" class="outline">保存并离场<small>保留进度，本局不结算</small></button>
+          <p id="pause-save-note" role="status"></p>
+          <button id="quit-btn" type="button" class="link quiet">结束本局</button>
+        </div>
+        <div class="pause-settings hidden">
+          <div class="settings" data-scope="pause"></div>
+          <button id="settings-back-btn" type="button" class="outline">返回</button>
+        </div>
+      </section>
+
+      <section id="route" class="overlay hidden" aria-label="资料图鉴">
+        <div class="route-top"><button id="route-back" type="button" class="link">‹ 返回</button><h2>资料图鉴</h2><i></i></div>
+        <div class="route-books"></div>
+        <div class="route-tabs"></div>
+        <div class="route-cores"></div>
+        <div class="route-body"></div>
+      </section>
+
+      <section id="shot-view" class="overlay hidden" aria-label="截图预览">
+        <img id="shot-img" alt="截图" />
+        <div class="shot-row">
+          <a id="shot-save" class="btn" download="钢铁破坏者截图.jpg">保存</a>
+          <button id="shot-share" type="button">分享</button>
+          <button id="shot-close" type="button" class="ghost">关闭</button>
+        </div>
+      </section>
+
+      <section id="gameover" class="overlay hidden">
+        <h2 id="go-title">战斗结束</h2><p id="go-mode" class="sub"></p>
+        <p id="go-rating"></p>
+        <p class="go-dist"><b id="go-dist">0</b> 米</p>
+        <p id="go-best"></p>
+        <p class="sub"><span id="go-stats"></span></p>
+        <div id="go-medals"></div>
+        <p id="go-high"></p>
+        <div id="go-econ"></div>
+        <p id="go-score"></p>
+        <button id="go-share" type="button">分享战绩</button>
+        <p id="run-retention" class="run-retention">本局装备下次重选<br />军衔军票继续保留</p>
+        <div class="go-row"><button id="restart" type="button">再来一局</button><button id="prepare-again" type="button" class="outline">调整出击</button></div>
+        <button id="menu-btn" type="button" class="link">返回主界面</button>
+        <details id="go-rep"><summary>战报</summary><div id="go-report"></div></details>
+      </section>
+      <section id="ranks" class="overlay hidden">
+        <h2>排行榜</h2><p class="sub">本机纪录</p>
+        <ol id="ranks-list"></ol>
+        <button id="ranks-close" type="button">返回</button>
+      </section>
+    </main>
+  </body>
+</html>
