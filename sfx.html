@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1014" />
+    <title>钢铁破坏者 · 音效试听</title>
+    <style>
+      :root { --amber: #ffcf6a; --bg: #0e1014; --card: #171a20; --line: rgba(255, 255, 255, 0.1); }
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      body { margin: 0; background: var(--bg); color: #e8e2d0; font: 14px/1.5 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 96px); }
+      header { padding: 18px 16px 6px; }
+      h1 { margin: 0; font-size: 20px; letter-spacing: 2px; color: var(--amber); }
+      header p { margin: 6px 0 0; color: #9aa0a8; font-size: 12px; }
+      section { margin: 12px 12px 0; padding: 12px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); }
+      h2 { margin: 0 0 8px; font-size: 15px; letter-spacing: 1px; }
+      .row { display: grid; grid-template-columns: 1fr 44px; gap: 8px; margin: 6px 0; }
+      .play { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 10px; min-height: 52px; padding: 6px 12px 6px 6px; border-radius: 11px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.04); color: inherit; font: inherit; text-align: left; cursor: pointer; }
+      .play b { display: grid; place-items: center; height: 40px; border-radius: 9px; background: rgba(255, 207, 106, 0.14); color: var(--amber); font-size: 15px; letter-spacing: 1px; }
+      .play .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+      .play .d { color: #9aa0a8; font-size: 12px; font-variant-numeric: tabular-nums; }
+      .play.on { border-color: var(--amber); background: rgba(255, 207, 106, 0.12); }
+      .play.on b { background: var(--amber); color: #1a1208; }
+      .pick { border-radius: 11px; border: 1px solid var(--line); background: none; color: #9aa0a8; font-size: 20px; cursor: pointer; }
+      .pick.on { color: #1a1208; background: var(--amber); border-color: var(--amber); }
+      footer { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 12px calc(env(safe-area-inset-bottom) + 10px); background: rgba(14, 16, 20, 0.94); border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; backdrop-filter: blur(6px); }
+      #sel { flex: 1; font-size: 13px; color: #c9ced6; min-height: 20px; }
+      #copy { padding: 11px 16px; border-radius: 11px; border: none; background: var(--amber); color: #1a1208; font-weight: 800; font-size: 14px; }
+      .src { font-size: 11px; color: #6c727a; margin: 2px 0 0 2px; }
+      .src a { color: #8a9098; }
+      .src i { font-style: normal; color: #b8b2a2; }
+      .gnote { margin: -2px 0 8px; font-size: 12px; color: #c9b98a; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>音效试听</h1>
+      <p>点按钮试听，喜欢的点右边 ☆ 收藏。每类可以选一个或几个（几个会随机轮换，避免重复感）。选好后点底部「复制选择」，把编号发给我就行。</p>
+      <p>素材都来自 Freesound，全部是 CC0 协议：可以免费商用，不用署名（标「合成」的是用几段 CC0 素材混出来的，同样可以商用）。</p>
+    </header>
+    <main id="list"></main>
+    <footer>
+      <div id="sel">还没有收藏</div>
+      <button id="copy" type="button">复制选择</button>
+    </footer>
+    <script>
+      const audio = new Audio();
+      let playing = null;
+      const picks = new Set(JSON.parse(localStorage.getItem('sfx-picks') || '[]'));
+      const sel = document.getElementById('sel');
+      const renderSel = () => {
+        const list = [...picks].sort();
+        sel.textContent = list.length ? `已收藏：${list.join(' ')}` : '还没有收藏';
+        localStorage.setItem('sfx-picks', JSON.stringify(list));
+      };
+      fetch('sfx-audition/manifest.json')
+        .then((r) => r.json())
+        .then((groups) => {
+          const main = document.getElementById('list');
+          for (const g of groups) {
+            const sec = document.createElement('section');
+            sec.innerHTML = `<h2>${g.label}</h2>${g.note ? `<p class="gnote">${g.note}</p>` : ''}`;
+            for (const it of g.items) {
+              const row = document.createElement('div');
+              row.className = 'row';
+              row.innerHTML = `<button class="play" type="button"><b>${it.code}</b><span class="t">${it.title}</span><span class="d">${it.dur.toFixed(1)}s</span></button><button class="pick ${picks.has(it.code) ? 'on' : ''}" type="button" aria-label="收藏 ${it.code}">${picks.has(it.code) ? '★' : '☆'}</button>`;
+              const play = row.querySelector('.play');
+              play.addEventListener('click', () => {
+                if (playing === play && !audio.paused) {
+                  audio.pause();
+                  play.classList.remove('on');
+                  return;
+                }
+                playing?.classList.remove('on');
+                playing = play;
+                play.classList.add('on');
+                audio.src = `sfx-audition/${it.file}`;
+                audio.currentTime = 0;
+                audio.play().catch(() => play.classList.remove('on'));
+              });
+              const pick = row.querySelector('.pick');
+              pick.addEventListener('click', () => {
+                if (picks.has(it.code)) picks.delete(it.code);
+                else picks.add(it.code);
+                pick.classList.toggle('on', picks.has(it.code));
+                pick.textContent = picks.has(it.code) ? '★' : '☆';
+                renderSel();
+              });
+              sec.appendChild(row);
+              const src = document.createElement('div');
+              src.className = 'src';
+              const from = it.page ? `<a href="${it.page}" target="_blank" rel="noopener">Freesound #${it.id}</a>` : it.src ?? '';
+              src.innerHTML = `${it.code} · ${it.user} · ${from}${it.note ? `<br><i>${it.note}</i>` : ''}`;
+              sec.appendChild(src);
+            }
+            main.appendChild(sec);
+          }
+          renderSel();
+        });
+      audio.addEventListener('ended', () => playing?.classList.remove('on'));
+      document.getElementById('copy').addEventListener('click', async () => {
+        const text = [...picks].sort().join(' ') || '（没有收藏）';
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        sel.textContent = `已复制：${text}`;
+      });
+    </script>
+  </body>
+</html>

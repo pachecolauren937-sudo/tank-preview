@@ -1,0 +1,807 @@
+[
+ {
+  "id": "prism",
+  "label": "★ 已选定 P1 · 光棱坦克开火（玩家激光流 + 敌方光棱坦克共用）",
+  "note": "制作人 2026-10-13 选定 P1，已接进游戏当默认；P2～P5 留着备选。玩家激光：起光放原调，升到紫 / 金阶各再响一声、一阶比一阶高；敌方光棱坦克：先放 PC 充能，再放同一声降一点调。想在游戏里再比：试玩链接后面加 ?prism=P3（换成你想听的编号），不加就是 P1。",
+  "items": [
+   {
+    "code": "P1",
+    "file": "P1.mp3",
+    "title": "RailGun_Fire1",
+    "user": "BaggoNotes",
+    "dur": 0.86,
+    "page": "https://freesound.org/people/BaggoNotes/sounds/785380/",
+    "id": "785380",
+    "note": "★ 当前默认（制作人 2026-10-13 选定）：高能放电「嗤——」，干净、亮，没有低频轰鸣，不带水晶共鸣"
+   },
+   {
+    "code": "P2",
+    "file": "P2.mp3",
+    "title": "ScifiHeavyBlasterShot.wav",
+    "user": "SuperPhat",
+    "dur": 1.45,
+    "page": "https://freesound.org/people/SuperPhat/sounds/531861/",
+    "id": "531861",
+    "note": "重型能量炮：起爆最脆最狠，尾巴长、偏「炮」"
+   },
+   {
+    "code": "P3",
+    "file": "P3.mp3",
+    "title": "Weapons Beam Start",
+    "user": "unfa",
+    "dur": 1.0,
+    "page": "https://freesound.org/people/unfa/sounds/584192/",
+    "id": "584192",
+    "note": "电弧「滋滋滋」起光：像特斯拉，电感强"
+   },
+   {
+    "code": "P4",
+    "file": "P4.mp3",
+    "title": "Glass Zap 2",
+    "user": "D_Yonqui",
+    "dur": 0.31,
+    "page": "https://freesound.org/people/D_Yonqui/sounds/864210/",
+    "id": "864210",
+    "note": "玻璃 / 水晶「铮」：最有棱镜味，但很短、偏轻"
+   },
+   {
+    "code": "P5",
+    "file": "P5.mp3",
+    "title": "棱镜放电（合成）",
+    "user": "本项目合成",
+    "dur": 0.86,
+    "page": "",
+    "id": "",
+    "src": "P1 放电过 5 个水晶谐振（1.65 / 2.83 / 4.31 / 6.2 / 8.4 kHz）+ P2 开头 0.08 秒脆响 + P4 玻璃扫频，三段都是 CC0",
+    "note": "S10 时的推荐 / 原默认（2026-10-13 换成 P1）：脆响 + 放电 + 棱镜共鸣"
+   },
+   {
+    "code": "PC",
+    "file": "PC.mp3",
+    "title": "Laser Charge Up",
+    "user": "magnuswaker",
+    "dur": 1.1,
+    "page": "https://freesound.org/people/magnuswaker/sounds/588242/",
+    "id": "588242",
+    "note": "敌方光棱坦克开火前的充能（瞄准线一亮就响，五个方案共用，不用选）"
+   }
+  ]
+ },
+ {
+  "id": "thunder",
+  "label": "★ 待选 · 雷声（究极「雷云」闪电风暴）",
+  "note": "D4 / 汇总第 29 条：Freesound 上 4 条 CC0（公共领域，可商用、不用署名），各截了 6～8 秒、统一响度。现在游戏里是合成的雷声；选一个编号（近雷劈下来用 1 条、远处滚雷用 1 条也行），就换进游戏。",
+  "items": [
+   {
+    "code": "T1",
+    "file": "T1.mp3",
+    "title": "Loud Thunder sounds.（近雷 · 连续炸裂）",
+    "user": "Rvgerxini",
+    "dur": 7.0,
+    "page": "https://freesound.org/people/Rvgerxini/sounds/620529/",
+    "id": "620529",
+    "size": 84680,
+    "status": "200",
+    "license": "CC0"
+   },
+   {
+    "code": "T2",
+    "file": "T2.mp3",
+    "title": "Thunder2（近雷 · 一记重劈）",
+    "user": "Yoyodaman234",
+    "dur": 7.0,
+    "page": "https://freesound.org/people/Yoyodaman234/sounds/267551/",
+    "id": "267551",
+    "size": 84680,
+    "status": "200",
+    "license": "CC0"
+   },
+   {
+    "code": "T3",
+    "file": "T3.mp3",
+    "title": "Thunder 1 (No Reverb)（干脆的雷鸣（合成，没有混响））",
+    "user": "Terry93D",
+    "dur": 6.49,
+    "page": "https://freesound.org/people/Terry93D/sounds/327986/",
+    "id": "327986",
+    "size": 78724,
+    "status": "200",
+    "license": "CC0"
+   },
+   {
+    "code": "T4",
+    "file": "T4.mp3",
+    "title": "230405 Thunder DRY rolling distant low rumbles（远处滚雷）",
+    "user": "TRP",
+    "dur": 8.0,
+    "page": "https://freesound.org/people/TRP/sounds/717845/",
+    "id": "717845",
+    "size": 96906,
+    "status": "200",
+    "license": "CC0"
+   }
+  ]
+ },
+ {
+  "id": "cannon",
+  "label": "主炮开火",
+  "items": [
+   {
+    "code": "C1",
+    "file": "C1.mp3",
+    "title": "Tank fire Mixed.wav",
+    "user": "GaryQ",
+    "dur": 4.45,
+    "page": "https://freesound.org/people/GaryQ/sounds/127845/",
+    "id": "127845",
+    "size": 105026,
+    "status": "200"
+   },
+   {
+    "code": "C2",
+    "file": "C2.mp3",
+    "title": "cannon.mp3",
+    "user": "Kneeling",
+    "dur": 5.36,
+    "page": "https://freesound.org/people/Kneeling/sounds/448002/",
+    "id": "448002",
+    "size": 127842,
+    "status": "200"
+   },
+   {
+    "code": "C3",
+    "file": "C3.mp3",
+    "title": "GUNArtl_69thFieldArtilleryGun01_InMotionAudio_FREESampleSunday.wav",
+    "user": "InMotionAudio",
+    "dur": 2.13,
+    "page": "https://freesound.org/people/InMotionAudio/sounds/702245/",
+    "id": "702245",
+    "size": 38832,
+    "status": "200"
+   },
+   {
+    "code": "C4",
+    "file": "C4.mp3",
+    "title": "Excalibur Howitzer Shot",
+    "user": "qubodup",
+    "dur": 0.79,
+    "page": "https://freesound.org/people/qubodup/sounds/175430/",
+    "id": "175430",
+    "size": 14969,
+    "status": "200"
+   },
+   {
+    "code": "C5",
+    "file": "C5.mp3",
+    "title": "Deep Boom Heavy Cannon Fire - Game SFX (2 of 2)",
+    "user": "el_boss",
+    "dur": 2.44,
+    "page": "https://freesound.org/people/el_boss/sounds/853281/",
+    "id": "853281",
+    "size": 57403,
+    "status": "200"
+   },
+   {
+    "code": "C6",
+    "file": "C6.mp3",
+    "title": "Large Cannon Fire",
+    "user": "raphavpires",
+    "dur": 3.5,
+    "page": "https://freesound.org/people/raphavpires/sounds/867030/",
+    "id": "867030",
+    "size": 78482,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "explosion",
+  "label": "爆炸（近处）",
+  "items": [
+   {
+    "code": "E1",
+    "file": "E1.mp3",
+    "title": "BOOMING PUNCHY EXPLOSION - close, big SCHOEPS MK41.wav",
+    "user": "misosound",
+    "dur": 2.99,
+    "page": "https://freesound.org/people/misosound/sounds/251759/",
+    "id": "251759",
+    "size": 70032,
+    "status": "200"
+   },
+   {
+    "code": "E2",
+    "file": "E2.mp3",
+    "title": "Grenade Explosion SFX (medium-sized, meaty, realistic)",
+    "user": "unfa",
+    "dur": 5.32,
+    "page": "https://freesound.org/people/unfa/sounds/609587/",
+    "id": "609587",
+    "size": 111624,
+    "status": "200"
+   },
+   {
+    "code": "E3",
+    "file": "E3.mp3",
+    "title": "explosion_big_01.ogg",
+    "user": "derplayer",
+    "dur": 2.86,
+    "page": "https://freesound.org/people/derplayer/sounds/587194/",
+    "id": "587194",
+    "size": 70752,
+    "status": "200"
+   },
+   {
+    "code": "E4",
+    "file": "E4.mp3",
+    "title": "explosion_big_02.ogg",
+    "user": "derplayer",
+    "dur": 3.16,
+    "page": "https://freesound.org/people/derplayer/sounds/587193/",
+    "id": "587193",
+    "size": 76704,
+    "status": "200"
+   },
+   {
+    "code": "E5",
+    "file": "E5.mp3",
+    "title": "explosion_near.wav",
+    "user": "derplayer",
+    "dur": 1.77,
+    "page": "https://freesound.org/people/derplayer/sounds/587180/",
+    "id": "587180",
+    "size": 47904,
+    "status": "200"
+   },
+   {
+    "code": "E6",
+    "file": "E6.mp3",
+    "title": "Explosion",
+    "user": "qubodup",
+    "dur": 3.0,
+    "page": "https://freesound.org/people/qubodup/sounds/182429/",
+    "id": "182429",
+    "size": 67008,
+    "status": "200"
+   },
+   {
+    "code": "E7",
+    "file": "E7.mp3",
+    "title": "Explosion, Medium Blast",
+    "user": "Kinoton",
+    "dur": 5.05,
+    "page": "https://freesound.org/people/Kinoton/sounds/516914/",
+    "id": "516914",
+    "size": 118632,
+    "status": "200"
+   },
+   {
+    "code": "E8",
+    "file": "E8.mp3",
+    "title": "Explosion 1",
+    "user": "magnuswaker",
+    "dur": 1.24,
+    "page": "https://freesound.org/people/magnuswaker/sounds/523089/",
+    "id": "523089",
+    "size": 35520,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "distant",
+  "label": "爆炸（远处）",
+  "items": [
+   {
+    "code": "D1",
+    "file": "D1.mp3",
+    "title": "Muffled Distant Explosion",
+    "user": "NenadSimic",
+    "dur": 5.14,
+    "page": "https://freesound.org/people/NenadSimic/sounds/149966/",
+    "id": "149966",
+    "size": 110817,
+    "status": "200"
+   },
+   {
+    "code": "D2",
+    "file": "D2.mp3",
+    "title": "low mid afar explosion 1.wav",
+    "user": "Logicogonist",
+    "dur": 7.21,
+    "page": "https://freesound.org/people/Logicogonist/sounds/264031/",
+    "id": "264031",
+    "size": 149154,
+    "status": "200"
+   },
+   {
+    "code": "D3",
+    "file": "D3.mp3",
+    "title": "Explosion Distant ",
+    "user": "Johnnyfarmer",
+    "dur": 10.93,
+    "page": "https://freesound.org/people/Johnnyfarmer/sounds/209769/",
+    "id": "209769",
+    "size": 154488,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "mg",
+  "label": "机枪（单发 / 连发）",
+  "items": [
+   {
+    "code": "M1",
+    "file": "M1.mp3",
+    "title": "Machine Gun 001 - single shot.ogg",
+    "user": "pgi",
+    "dur": 1.0,
+    "page": "https://freesound.org/people/pgi/sounds/212601/",
+    "id": "212601",
+    "size": 25674,
+    "status": "200"
+   },
+   {
+    "code": "M2",
+    "file": "M2.mp3",
+    "title": "Machine Gun 002 - single shot.ogg",
+    "user": "pgi",
+    "dur": 1.01,
+    "page": "https://freesound.org/people/pgi/sounds/212607/",
+    "id": "212607",
+    "size": 23377,
+    "status": "200"
+   },
+   {
+    "code": "M3",
+    "file": "M3.mp3",
+    "title": "dshk_01.wav",
+    "user": "greatmganga",
+    "dur": 0.26,
+    "page": "https://freesound.org/people/greatmganga/sounds/122103/",
+    "id": "122103",
+    "size": 9186,
+    "status": "200"
+   },
+   {
+    "code": "M4",
+    "file": "M4.mp3",
+    "title": "Gunshot001",
+    "user": "mitchelk",
+    "dur": 0.85,
+    "page": "https://freesound.org/people/mitchelk/sounds/136766/",
+    "id": "136766",
+    "size": 20560,
+    "status": "200"
+   },
+   {
+    "code": "M5",
+    "file": "M5.mp3",
+    "title": "BigGun.wav",
+    "user": "Willary1",
+    "dur": 0.88,
+    "page": "https://freesound.org/people/Willary1/sounds/342184/",
+    "id": "342184",
+    "size": 24735,
+    "status": "200"
+   },
+   {
+    "code": "M6",
+    "file": "M6.mp3",
+    "title": "heavy.burst.wav",
+    "user": "alienbomb",
+    "dur": 0.92,
+    "page": "https://freesound.org/people/alienbomb/sounds/39071/",
+    "id": "39071",
+    "size": 17318,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "ricochet",
+  "label": "子弹打钢板 / 跳弹",
+  "items": [
+   {
+    "code": "R1",
+    "file": "R1.mp3",
+    "title": "HeavyBulletPing.mp3",
+    "user": "wilhellboy",
+    "dur": 0.42,
+    "page": "https://freesound.org/people/wilhellboy/sounds/351371/",
+    "id": "351371",
+    "size": 11898,
+    "status": "200"
+   },
+   {
+    "code": "R2",
+    "file": "R2.mp3",
+    "title": "Bullet Hit Metal",
+    "user": "coolguy244e",
+    "dur": 1.29,
+    "page": "https://freesound.org/people/coolguy244e/sounds/267893/",
+    "id": "267893",
+    "size": 32562,
+    "status": "200"
+   },
+   {
+    "code": "R3",
+    "file": "R3.mp3",
+    "title": "Ricochet 2.wav",
+    "user": "morganpurkis",
+    "dur": 0.75,
+    "page": "https://freesound.org/people/morganpurkis/sounds/392975/",
+    "id": "392975",
+    "size": 18240,
+    "status": "200"
+   },
+   {
+    "code": "R4",
+    "file": "R4.mp3",
+    "title": "Bullet_Ricochet_01",
+    "user": "Artmasterrich",
+    "dur": 0.67,
+    "page": "https://freesound.org/people/Artmasterrich/sounds/345413/",
+    "id": "345413",
+    "size": 17952,
+    "status": "200"
+   },
+   {
+    "code": "R5",
+    "file": "R5.mp3",
+    "title": "ricochet.mp3",
+    "user": "cedarstudios",
+    "dur": 1.79,
+    "page": "https://freesound.org/people/cedarstudios/sounds/148840/",
+    "id": "148840",
+    "size": 43834,
+    "status": "200"
+   },
+   {
+    "code": "R6",
+    "file": "R6.mp3",
+    "title": "bullet ricochet.wav",
+    "user": "aust_paul",
+    "dur": 2.36,
+    "page": "https://freesound.org/people/aust_paul/sounds/30932/",
+    "id": "30932",
+    "size": 54222,
+    "status": "200"
+   },
+   {
+    "code": "R7",
+    "file": "R7.mp3",
+    "title": "Ricochet 4.wav",
+    "user": "saturdaysoundguy",
+    "dur": 2.11,
+    "page": "https://freesound.org/people/saturdaysoundguy/sounds/394187/",
+    "id": "394187",
+    "size": 50784,
+    "status": "200"
+   },
+   {
+    "code": "R8",
+    "file": "R8.mp3",
+    "title": "Metal Sheet Hit",
+    "user": "Stereo Surgeon",
+    "dur": 1.41,
+    "page": "https://freesound.org/people/Stereo Surgeon/sounds/262516/",
+    "id": "262516",
+    "size": 20418,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "armorhit",
+  "label": "被重炮击中（重金属撞击）",
+  "items": [
+   {
+    "code": "H1",
+    "file": "H1.mp3",
+    "title": "Metal Impact",
+    "user": "Rickplayer",
+    "dur": 1.79,
+    "page": "https://freesound.org/people/Rickplayer/sounds/530486/",
+    "id": "530486",
+    "size": 43516,
+    "status": "200"
+   },
+   {
+    "code": "H2",
+    "file": "H2.mp3",
+    "title": "Metal Boom",
+    "user": "Johnnyfarmer",
+    "dur": 2.06,
+    "page": "https://freesound.org/people/Johnnyfarmer/sounds/209772/",
+    "id": "209772",
+    "size": 32448,
+    "status": "200"
+   },
+   {
+    "code": "H3",
+    "file": "H3.mp3",
+    "title": "Deep metal clang",
+    "user": "BlenderDiplom",
+    "dur": 1.12,
+    "page": "https://freesound.org/people/BlenderDiplom/sounds/201094/",
+    "id": "201094",
+    "size": 26509,
+    "status": "200"
+   },
+   {
+    "code": "H4",
+    "file": "H4.mp3",
+    "title": "Metallic Clang",
+    "user": "eben-frostey",
+    "dur": 1.66,
+    "page": "https://freesound.org/people/eben-frostey/sounds/435681/",
+    "id": "435681",
+    "size": 38719,
+    "status": "200"
+   },
+   {
+    "code": "H5",
+    "file": "H5.mp3",
+    "title": "ANI Big Pipe Hit",
+    "user": "ani_music",
+    "dur": 1.0,
+    "page": "https://freesound.org/people/ani_music/sounds/244983/",
+    "id": "244983",
+    "size": 24318,
+    "status": "200"
+   },
+   {
+    "code": "H6",
+    "file": "H6.mp3",
+    "title": "Heavy Metal Thud on Ground",
+    "user": "7of9Designs",
+    "dur": 0.75,
+    "page": "https://freesound.org/people/7of9Designs/sounds/640204/",
+    "id": "640204",
+    "size": 20458,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "crunch",
+  "label": "碾压汽车 / 铁皮",
+  "items": [
+   {
+    "code": "K1",
+    "file": "K1.mp3",
+    "title": "Clank Car Crash Collision",
+    "user": "qubodup",
+    "dur": 0.54,
+    "page": "https://freesound.org/people/qubodup/sounds/151624/",
+    "id": "151624",
+    "size": 14716,
+    "status": "200"
+   },
+   {
+    "code": "K2",
+    "file": "K2.mp3",
+    "title": "Car Crash (with Glass)",
+    "user": "magnuswaker",
+    "dur": 2.56,
+    "page": "https://freesound.org/people/magnuswaker/sounds/592388/",
+    "id": "592388",
+    "size": 50112,
+    "status": "200"
+   },
+   {
+    "code": "K3",
+    "file": "K3.mp3",
+    "title": "Crushed Can.wav",
+    "user": "husky70",
+    "dur": 2.49,
+    "page": "https://freesound.org/people/husky70/sounds/157300/",
+    "id": "157300",
+    "size": 64763,
+    "status": "200"
+   },
+   {
+    "code": "K4",
+    "file": "K4.mp3",
+    "title": "Metallic Noise.wav",
+    "user": "RutgerMuller",
+    "dur": 3.82,
+    "page": "https://freesound.org/people/RutgerMuller/sounds/51044/",
+    "id": "51044",
+    "size": 88506,
+    "status": "200"
+   },
+   {
+    "code": "K5",
+    "file": "K5.mp3",
+    "title": "Fast Collision",
+    "user": "qubodup",
+    "dur": 0.31,
+    "page": "https://freesound.org/people/qubodup/sounds/332056/",
+    "id": "332056",
+    "size": 9312,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "engine",
+  "label": "坦克引擎 / 履带",
+  "items": [
+   {
+    "code": "G1",
+    "file": "G1.mp3",
+    "title": "t26_moving_01.wav",
+    "user": "greatmganga",
+    "dur": 14.36,
+    "page": "https://freesound.org/people/greatmganga/sounds/329800/",
+    "id": "329800",
+    "size": 327579,
+    "status": "200"
+   },
+   {
+    "code": "G2",
+    "file": "G2.mp3",
+    "title": "tracked vehicle.wav",
+    "user": "cognito perceptu",
+    "dur": 9.42,
+    "page": "https://freesound.org/people/cognito perceptu/sounds/121531/",
+    "id": "121531",
+    "size": 216019,
+    "status": "200"
+   },
+   {
+    "code": "G3",
+    "file": "G3.mp3",
+    "title": "Driving Tank Engine.flac",
+    "user": "qubodup",
+    "dur": 5.69,
+    "page": "https://freesound.org/people/qubodup/sounds/187676/",
+    "id": "187676",
+    "size": 105360,
+    "status": "200"
+   },
+   {
+    "code": "G4",
+    "file": "G4.mp3",
+    "title": "Military Vehicle Humming.flac",
+    "user": "qubodup",
+    "dur": 30.0,
+    "page": "https://freesound.org/people/qubodup/sounds/182793/",
+    "id": "182793",
+    "size": 561312,
+    "status": "200"
+   },
+   {
+    "code": "G5",
+    "file": "G5.mp3",
+    "title": "AMX-13 Engine.wav",
+    "user": "AdamHarvester",
+    "dur": 5.32,
+    "page": "https://freesound.org/people/AdamHarvester/sounds/702456/",
+    "id": "702456",
+    "size": 124907,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "rocket",
+  "label": "火箭发射",
+  "items": [
+   {
+    "code": "Q1",
+    "file": "Q1.mp3",
+    "title": "Rocket Launch",
+    "user": "Jarusca",
+    "dur": 1.41,
+    "page": "https://freesound.org/people/Jarusca/sounds/521377/",
+    "id": "521377",
+    "size": 35136,
+    "status": "200"
+   },
+   {
+    "code": "Q2",
+    "file": "Q2.mp3",
+    "title": "CAS Missile Launching.wav",
+    "user": "morganpurkis",
+    "dur": 1.41,
+    "page": "https://freesound.org/people/morganpurkis/sounds/398213/",
+    "id": "398213",
+    "size": 33408,
+    "status": "200"
+   },
+   {
+    "code": "Q3",
+    "file": "Q3.mp3",
+    "title": "woosh.wav",
+    "user": "ReadeOnly",
+    "dur": 1.39,
+    "page": "https://freesound.org/people/ReadeOnly/sounds/186956/",
+    "id": "186956",
+    "size": 33186,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "whistle",
+  "label": "炮弹来袭尖啸",
+  "items": [
+   {
+    "code": "W1",
+    "file": "W1.mp3",
+    "title": "Falling Bomb.wav",
+    "user": "Daleonfire",
+    "dur": 2.92,
+    "page": "https://freesound.org/people/Daleonfire/sounds/506313/",
+    "id": "506313",
+    "size": 56352,
+    "status": "200"
+   },
+   {
+    "code": "W2",
+    "file": "W2.mp3",
+    "title": "Incoming mortar 1",
+    "user": "Zagge28",
+    "dur": 1.68,
+    "page": "https://freesound.org/people/Zagge28/sounds/241840/",
+    "id": "241840",
+    "size": 39191,
+    "status": "200"
+   },
+   {
+    "code": "W3",
+    "file": "W3.mp3",
+    "title": "Incoming mortar 3",
+    "user": "Zagge28",
+    "dur": 2.15,
+    "page": "https://freesound.org/people/Zagge28/sounds/241838/",
+    "id": "241838",
+    "size": 49157,
+    "status": "200"
+   }
+  ]
+ },
+ {
+  "id": "ambience",
+  "label": "战场环境",
+  "items": [
+   {
+    "code": "A1",
+    "file": "A1.mp3",
+    "title": "War Ambience Loop",
+    "user": "qubodup",
+    "dur": 23.83,
+    "page": "https://freesound.org/people/qubodup/sounds/239139/",
+    "id": "239139",
+    "size": 557712,
+    "status": "200"
+   },
+   {
+    "code": "A2",
+    "file": "A2.mp3",
+    "title": "BattleField Ambience (Loop)",
+    "user": "banan_",
+    "dur": 59.15,
+    "page": "https://freesound.org/people/banan_/sounds/385895/",
+    "id": "385895",
+    "size": 1311352,
+    "status": "200"
+   },
+   {
+    "code": "A3",
+    "file": "A3.mp3",
+    "title": "Firefight",
+    "user": "TheBuilder15",
+    "dur": 20.39,
+    "page": "https://freesound.org/people/TheBuilder15/sounds/404334/",
+    "id": "404334",
+    "size": 478590,
+    "status": "200"
+   }
+  ]
+ }
+]

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 沿用加载页的坦克图形；主体放在可裁切图标的中央安全圆内。 -->
+  <rect width="512" height="512" fill="#10181b"/>
+  <rect x="36" y="36" width="440" height="440" rx="24" fill="#182624" stroke="#50605a" stroke-width="3"/>
+  <path d="M176 116h160M176 396h160" stroke="#b8913a" stroke-width="5"/>
+  <svg x="48" y="178" width="416" height="156" viewBox="0 0 320 120">
+    <defs>
+      <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#66756f"/><stop offset="1" stop-color="#2f3b3a"/></linearGradient>
+      <linearGradient id="turret" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#76847d"/><stop offset="1" stop-color="#3a4745"/></linearGradient>
+    </defs>
+    <line x1="104" y1="40" x2="86" y2="6" stroke="#5c6a66" stroke-width="1.5"/>
+    <rect x="34" y="78" width="228" height="33" rx="16.5" fill="#161b1d" stroke="#2c3639" stroke-width="1.5"/>
+    <rect x="37.5" y="81.5" width="221" height="26" rx="13" fill="none" stroke="#4a5558" stroke-width="3" stroke-dasharray="5 4"/>
+    <g fill="#283033" stroke="#4b585b" stroke-width="1.5">
+      <circle cx="50" cy="95" r="10"/><circle cx="82" cy="95" r="11"/><circle cx="114" cy="95" r="11"/>
+      <circle cx="146" cy="95" r="11"/><circle cx="178" cy="95" r="11"/><circle cx="210" cy="95" r="11"/><circle cx="244" cy="95" r="10"/>
+      <path d="M50 86v18M41 95h18M82 85v20M72 95h20M114 85v20M104 95h20M146 85v20M136 95h20M178 85v20M168 95h20M210 85v20M200 95h20M244 86v18M235 95h18" stroke="#3a4547"/>
+    </g>
+    <path d="M30 80 40 62H232L272 74 266 80Z" fill="url(#steel)" stroke="#1c2426" stroke-width="1.5"/>
+    <path d="M40 62H232L272 74" fill="none" stroke="#9aa497" opacity=".7"/>
+    <rect x="44" y="70" width="202" height="11" fill="#3a4745" stroke="#1c2426"/>
+    <path d="M84 70v11M124 70v11M164 70v11M204 70v11" stroke="#1c2426"/>
+    <path d="M92 62 100 40 168 38 196 48V62Z" fill="url(#turret)" stroke="#1c2426" stroke-width="1.5"/>
+    <path d="M100 40 168 38 196 48" fill="none" stroke="#b8c0b2" opacity=".6"/>
+    <rect x="116" y="32" width="28" height="7" rx="2" fill="#4c5a56" stroke="#1c2426"/>
+    <rect x="194" y="45" width="12" height="13" fill="#3e4b48" stroke="#1c2426"/>
+    <rect x="206" y="49" width="88" height="6" fill="#4a5753" stroke="#1c2426"/>
+    <rect x="292" y="46" width="14" height="12" rx="1" fill="#3e4b48" stroke="#1c2426"/>
+    <g fill="#b8913a" opacity=".8"><circle cx="52" cy="66" r="1.2"/><circle cx="92" cy="66" r="1.2"/><circle cx="132" cy="66" r="1.2"/><circle cx="172" cy="66" r="1.2"/><circle cx="212" cy="66" r="1.2"/></g>
+  </svg>
+</svg>
